@@ -116,9 +116,11 @@ class TestDropZone:
 
     def test_drop_txt_accepted(self):
         from app.gui.widgets import local_md_path_from_urls
+        native = Path.cwd() / "words.txt"  # 平台原生绝对路径（盘符假设在 Linux 不成立）
         mime = QMimeData()
-        mime.setUrls([QUrl.fromLocalFile("C:/words.txt")])
-        assert local_md_path_from_urls(mime.urls()) == "C:/words.txt"
+        mime.setUrls([QUrl.fromLocalFile(str(native))])
+        result = local_md_path_from_urls(mime.urls())
+        assert result is not None and Path(result) == native  # toLocalFile 斜杠方向随平台不同，用 Path 归一化
 
 
 class TestPromptsPage:
