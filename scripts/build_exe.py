@@ -89,6 +89,13 @@ def build(name: str, console: bool) -> int:
 
 
 def main() -> int:
+    # Windows 控制台可能是 cp1252 等无法编码中文的代码页（GitHub runner 即如此），
+    # 输出降级为占位符而不是让整个构建在打印成功信息时崩掉（exe 其实已构建完成）。
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(errors="replace")
+        except (AttributeError, OSError):
+            pass
     parser = argparse.ArgumentParser(description="AnkiMint GUI 打包为单文件 exe")
     parser.add_argument(
         "--name", default="AnkiMint", help="产物名称（默认 AnkiMint）"

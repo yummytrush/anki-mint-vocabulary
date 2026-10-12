@@ -11,6 +11,9 @@ permissions:
 jobs:
   build-exe:
     runs-on: windows-latest
+    env:
+      # runner 控制台是 cp1252，无法编码中文输出，强制 Python UTF-8 模式
+      PYTHONUTF8: "1"
     steps:
       - uses: actions/checkout@v4
 

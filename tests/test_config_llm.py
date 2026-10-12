@@ -15,8 +15,12 @@ openai 客户端打桩），不触网。
 import json
 from types import SimpleNamespace
 
-import httpx
 import pytest
+
+try:
+    import httpx
+except ImportError:  # openai>=3 的 HTTP 依赖已更名为 httpx2，API 兼容
+    import httpx2 as httpx  # type: ignore[no-redef]
 
 from app.core import config, llm
 

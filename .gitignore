@@ -16,3 +16,6 @@ build/
 
 # Claude Code 本地配置（含个人路径/权限，不入库）
 .claude/
+
+# 打包/安装元数据
+*.egg-info/

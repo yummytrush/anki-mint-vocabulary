@@ -18,6 +18,8 @@ jobs:
     env:
       # GUI 冒烟测试（pytest-qt）在无显示器 runner 上用离屏平台
       QT_QPA_PLATFORM: offscreen
+      # runner 控制台可能无法编码中文输出，强制 Python UTF-8 模式
+      PYTHONUTF8: "1"
     steps:
       - uses: actions/checkout@v4
 
