@@ -9,6 +9,7 @@
 import logging
 import re
 from dataclasses import dataclass, field
+from typing import Optional
 
 from app.core.models import WordEntry
 

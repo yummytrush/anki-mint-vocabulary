@@ -27,6 +27,11 @@ jobs:
           pip install -e .
           pip install pyinstaller
 
+      # 打包成功 ≠ 运行正常：先在打包用的 Python 上做导入冒烟，
+      # 提前暴露「低版本 Python 急切注解求值 / 缺模块」类问题
+      - name: Import smoke check (same interpreter as the frozen exe)
+        run: python -c "import app.cli; import app.gui.main_window; print('import smoke OK')"
+
       - name: Build single-file exe (windowed)
         run: python scripts/build_exe.py
 
