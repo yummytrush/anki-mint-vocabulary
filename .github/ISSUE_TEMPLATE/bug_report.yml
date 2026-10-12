@@ -1,0 +1,67 @@
+name: Bug 报告
+description: 报告 AnkiMint 的问题（CLI / GUI / exe 均可）
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        提交前请先查看 [docs/known-issues.md](https://github.com/yummytrush/anki-mint-vocabulary/blob/main/docs/known-issues.md) 与 README 的 FAQ，确认不是已知问题。
+  - type: dropdown
+    id: install-source
+    attributes:
+      label: 使用方式
+      options:
+        - exe 下载版（GitHub Releases）
+        - pip install（git 安装）
+        - 源码运行（clone + pip install -e .）
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: 发生位置
+      options:
+        - GUI 图形界面
+        - CLI 命令行
+        - 打包/构建（PyInstaller）
+        - 生成的卡片在 Anki 中显示异常
+        - 其他
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 从哪一步开始、输入了什么命令/点击了什么按钮
+      placeholder: |
+        1. 打开 GUI，在 AI 设置页填入 ...
+        2. 拖入 xx.md，点击 ...
+        3. 出现报错 ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望行为与实际行为
+      placeholder: 期望 ...，实际 ...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志摘录
+      description: data/logs/generator.log 或控制台末尾若干行。⚠️ 务必删除/遮挡 API Key
+      render: shell
+  - type: input
+    id: env
+    attributes:
+      label: 环境信息
+      placeholder: 例：Windows 11 · Python 3.12 · AnkiMint v0.1.0 / exe
+  - type: checkboxes
+    id: sanity
+    attributes:
+      label: 自查
+      options:
+        - label: 我确认以上内容不含 API Key 等敏感信息
+          required: true
+        - label: 已搜索现有 Issue，无重复报告

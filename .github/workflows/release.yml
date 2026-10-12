@@ -1,0 +1,57 @@
+name: Release
+
+# 推送 v* 标签 → Windows runner 上 PyInstaller 打包 → exe 附到 GitHub Release
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build-exe:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install project + PyInstaller
+        run: |
+          pip install -e .
+          pip install pyinstaller
+
+      - name: Build single-file exe (windowed)
+        run: python scripts/build_exe.py
+
+      - name: Generate SHA-256 checksum
+        shell: pwsh
+        run: |
+          $hash = (Get-FileHash dist\AnkiMint.exe -Algorithm SHA256).Hash
+          "$hash  AnkiMint.exe" | Out-File -Encoding utf8 dist\AnkiMint.exe.sha256
+          Get-Content dist\AnkiMint.exe.sha256
+
+      - name: Attach exe to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/AnkiMint.exe
+            dist/AnkiMint.exe.sha256
+          body: |
+            **AnkiMint ${{ github.ref_name }}**
+
+            下载 `AnkiMint.exe`，双击即可使用（绿色单文件，无需安装 Python）：
+
+            1. 打开 exe → 「AI 设置」页填入 API Key（DeepSeek 等 OpenAI 兼容服务），点「测试连接」
+            2. 回「工作台」拖入你的单词 Markdown
+            3. 点「开始生成」→ 得到 `.apkg` → 拖进 Anki 导入
+
+            > **杀毒软件误报提示**：未签名的 PyInstaller 单文件程序常被 Windows Defender
+            > 等误报，这是打包方式的普遍现象。可通过下方 SHA-256 校验文件完整性，
+            > 或改用源码方式运行（`pip install -e .`）。介意误报请勿下载。
+            >
+            > 首次启动需解压资源，等待几秒属正常。使用问题见 README 的 FAQ。
+          fail_on_unmatched_files: true

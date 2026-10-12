@@ -1,0 +1,309 @@
+
+/* ===== 全局重置 ===== */
+.card {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC",
+    "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #2c3e50;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* ===== 正面：填空题 ===== */
+.front {
+  text-align: center;
+  font-size: 1.3em;
+  line-height: 2;
+  padding: 40px 20px;
+}
+
+/* 中文提示 */
+.hint {
+  font-size: 0.85em;
+  color: #e67e22;
+  margin: 12px 0 20px;
+  padding: 6px 14px;
+  background: #fef9e7;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+/* 输入框区域 */
+.type-in input[type="text"] {
+  font-size: 1.1em;
+  padding: 8px 14px;
+  border: 2px solid #2980b9;
+  border-radius: 6px;
+  width: 60%;
+  max-width: 300px;
+  text-align: center;
+  outline: none;
+}
+.type-in input[type="text"]:focus {
+  border-color: #1a5276;
+  box-shadow: 0 0 4px rgba(26,82,118,0.3);
+}
+
+/* Anki 填空样式增强 */
+.cloze {
+  font-weight: bold;
+  color: #1a5276;
+  background-color: #d6eaf8;
+  border-bottom: 2px solid #2980b9;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* ===== 原句区域（背面顶部） ===== */
+.sentence-section {
+  background: #f0f3f5;
+  border-left: 4px solid #2980b9;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+}
+.sentence-original {
+  font-size: 1.05em;
+  font-weight: 500;
+  color: #2c3e50;
+  margin-bottom: 6px;
+}
+.sentence-translation {
+  color: #7f8c8d;
+  font-size: 0.95em;
+}
+
+/* 背面顶部翻译 */
+.sentence-translation-top {
+  text-align: center;
+  font-size: 1.0em;
+  color: #555;
+  margin: 10px 0;
+  padding: 6px 12px;
+  background: #fef9e7;
+  border-radius: 6px;
+}
+
+/* ===== 词头区域 ===== */
+.word-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #ecf0f1;
+}
+
+.word-title {
+  font-size: 1.8em;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.phonetic {
+  font-size: 1.1em;
+  color: #7f8c8d;
+  font-family: "Times New Roman", "Lucida Sans Unicode", serif;
+}
+
+.importance-badge {
+  font-size: 0.75em;
+  font-weight: 600;
+  color: #fff;
+  padding: 2px 10px;
+  border-radius: 12px;
+  letter-spacing: 0.5px;
+}
+
+/* ===== 音频播放 ===== */
+.audio-section {
+  text-align: center;
+  margin: 10px 0 16px;
+}
+.audio-section .replaybutton {
+  /* Anki 会自动为 [sound:...] 生成播放按钮，此处微调 */
+  margin: 0 auto;
+}
+
+/* ===== 分区标题 ===== */
+.section h2 {
+  font-size: 1.15em;
+  font-weight: 600;
+  color: #1a5276;
+  border-bottom: 1.5px solid #d5dbdb;
+  padding-bottom: 4px;
+  margin: 20px 0 10px;
+}
+
+/* ===== 核心释义表格 ===== */
+.cm-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 8px 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.cm-table td {
+  padding: 10px 12px;
+  vertical-align: top;
+}
+
+.cm-index {
+  width: 32px;
+  text-align: center;
+  font-weight: 700;
+  color: #fff;
+  background: #1a5276;
+  font-size: 0.85em;
+}
+
+.cm-table tr:nth-child(even) td {
+  background: #f8f9fa;
+}
+.cm-table tr:nth-child(odd) td {
+  background: #fff;
+}
+
+.cm-usage {
+  font-weight: 600;
+  font-size: 1.02em;
+  color: #2c3e50;
+  margin-bottom: 4px;
+}
+
+.cm-en {
+  color: #7f8c8d;
+  font-style: italic;
+  font-size: 0.95em;
+  margin-bottom: 4px;
+}
+
+.cm-logic {
+  color: #8e44ad;
+  font-size: 0.9em;
+  margin-bottom: 3px;
+}
+
+.cm-grammar {
+  color: #16a085;
+  font-size: 0.9em;
+  margin-bottom: 4px;
+}
+
+.cm-examples .example {
+  display: block;
+  color: #555;
+  font-size: 0.88em;
+  padding-left: 12px;
+  border-left: 3px solid #d5dbdb;
+  margin: 3px 0;
+}
+
+/* ===== 衍生词列表 ===== */
+.derivatives-list, .confusable-list, .grammar-list {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.derivatives-list li, .confusable-list li, .grammar-list li {
+  margin-bottom: 6px;
+}
+
+.pos {
+  color: #7f8c8d;
+  font-size: 0.85em;
+}
+
+.diff {
+  color: #555;
+  font-size: 0.92em;
+}
+
+/* ===== 终极记忆技巧 ===== */
+.memory-tip {
+  background: linear-gradient(135deg, #fff9e6, #fff3cd);
+  border: 1.5px solid #f0c040;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 18px 0 8px;
+}
+
+.memory-tip h2 {
+  color: #b7950b;
+  border-bottom: none;
+  margin-top: 0;
+  padding-bottom: 0;
+  font-size: 1.1em;
+}
+
+.memory-tip p {
+  font-size: 1.05em;
+  margin: 6px 0 0;
+}
+
+/* ===== 响应式：移动端适配 ===== */
+@media screen and (max-width: 480px) {
+  .card {
+    font-size: 14px;
+    padding: 10px;
+  }
+  .word-title {
+    font-size: 1.4em;
+  }
+  .front {
+    font-size: 1.1em;
+    padding: 20px 10px;
+  }
+}
+
+/* ===== 暗色模式适配 (Anki 夜览模式) ===== */
+.nightMode .card {
+  color: #ddd;
+}
+.nightMode .word-title {
+  color: #eee;
+}
+.nightMode .section h2 {
+  color: #85c1e9;
+  border-color: #444;
+}
+.nightMode .cm-table tr:nth-child(even) td {
+  background: #2a2a2a;
+}
+.nightMode .cm-table tr:nth-child(odd) td {
+  background: #222;
+}
+.nightMode .memory-tip {
+  background: linear-gradient(135deg, #3a3520, #2a2510);
+  border-color: #8b7800;
+}
+.nightMode .memory-tip h2 {
+  color: #f1c40f;
+}
+.nightMode .hint {
+  background: #3a3520;
+  color: #f0c040;
+}
+.nightMode .sentence-section {
+  background: #2a2a2a;
+  border-left-color: #85c1e9;
+}
+.nightMode .sentence-original {
+  color: #ddd;
+}
+.nightMode .sentence-translation-top {
+  background: #3a3520;
+  color: #ccc;
+}
+.nightMode .type-in input[type="text"] {
+  background: #333;
+  color: #ddd;
+  border-color: #5b9bd5;
+}

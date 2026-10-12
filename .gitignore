@@ -1,0 +1,18 @@
+# 敏密信息（含 API key，勿提交；模板见 .env.example）
+.env
+.env.bak.*
+data/backups/.env*
+
+# Python 运行时缓存
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# 运行时产物与个人数据（开源前不入库，见 docs/plans Task 7）
+data/
+dist/
+build/
+*.spec
+
+# Claude Code 本地配置（含个人路径/权限，不入库）
+.claude/

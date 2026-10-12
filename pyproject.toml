@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "anki-mint-vocabulary"
+version = "0.1.0"
+description = "AnkiMint — AI Vocabulary Flashcards for Anki（AI 词汇填空卡组生成器）"
+requires-python = ">=3.10"
+keywords = ["anki", "vocabulary", "english-learning", "flashcards", "ai"]
+dependencies = [
+    "genanki>=0.13.0",
+    "openai>=1.0.0",
+    "python-dotenv>=1.0.0",
+    "aiohttp>=3.9.0",
+    "gTTS>=2.5.0",
+    "edge-tts>=7.2.0",
+    "tqdm>=4.66.0",
+    "PySide6>=6.6",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-qt>=4.4",
+]
+
+[project.scripts]
+anki-mint = "app.cli:main"
+anki-mint-gui = "app.gui.main_window:main"
+
+[tool.setuptools]
+packages = ["app", "app.core", "app.gui", "app.gui.pages"]
+
+[tool.setuptools.package-data]
+"app.gui" = ["style.qss"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

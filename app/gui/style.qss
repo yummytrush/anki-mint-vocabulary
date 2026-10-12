@@ -1,0 +1,249 @@
+/* AnkiMint — GUI 样式表（设计 tokens 实现，见 docs/designs/gui-frontend-design.md §4）
+   {{TOKEN}} 占位符由 app/gui/theme.py 按浅色/暗色模式替换。 */
+
+* {
+  font-family: "Microsoft YaHei UI", "Segoe UI", "PingFang SC", sans-serif;
+  font-size: 14px;
+  color: {{TEXT}};
+}
+
+QMainWindow, QDialog, QWidget {
+  background: {{BASE}};
+}
+
+/* ===== 页签 ===== */
+QTabWidget::pane {
+  border: 1px solid {{BORDER}};
+  border-radius: 8px;
+  top: -1px;
+}
+QTabBar::tab {
+  padding: 8px 18px;
+  margin-right: 2px;
+  background: {{SURFACE}};
+  border: 1px solid {{BORDER}};
+  border-bottom: none;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  color: {{TEXT_MUTED}};
+}
+QTabBar::tab:selected {
+  background: {{BASE}};
+  color: {{PRIMARY}};
+  font-weight: 600;
+}
+QTabBar::tab:hover:!selected {
+  color: {{TEXT}};
+}
+
+/* ===== 输入控件 ===== */
+QLineEdit, QSpinBox, QComboBox, QPlainTextEdit, QTextEdit, QListWidget {
+  background: {{BASE}};
+  border: 1px solid {{BORDER}};
+  border-radius: 6px;
+  padding: 5px 8px;
+  min-height: 22px;
+  selection-background-color: {{SELECTION}};
+}
+QLineEdit:focus, QSpinBox:focus, QComboBox:focus, QPlainTextEdit:focus, QTextEdit:focus {
+  border: 1px solid {{PRIMARY}};
+}
+QLineEdit:disabled, QSpinBox:disabled, QComboBox:disabled, QPlainTextEdit:disabled {
+  color: {{TEXT_MUTED}};
+  background: {{SURFACE}};
+}
+QComboBox::drop-down {
+  border: none;
+  width: 22px;
+}
+QComboBox QAbstractItemView {
+  background: {{BASE}};
+  border: 1px solid {{BORDER}};
+  selection-background-color: {{SELECTION}};
+}
+
+/* ===== 按钮 ===== */
+QPushButton, QToolButton {
+  background: {{SURFACE}};
+  border: 1px solid {{BORDER}};
+  border-radius: 6px;
+  padding: 6px 14px;
+  min-height: 20px;
+}
+QPushButton:hover, QToolButton:hover {
+  border-color: {{PRIMARY}};
+}
+QPushButton:disabled {
+  color: {{TEXT_MUTED}};
+  background: {{SURFACE}};
+}
+QPushButton[role="primary"] {
+  background: {{PRIMARY}};
+  border: 1px solid {{PRIMARY}};
+  color: #ffffff;
+  font-weight: 600;
+  min-height: 24px;
+  padding: 7px 20px;
+}
+QPushButton[role="primary"]:hover {
+  background: {{PRIMARY_HOVER}};
+  border-color: {{PRIMARY_HOVER}};
+}
+QPushButton[role="primary"]:disabled {
+  background: {{BORDER}};
+  border-color: {{BORDER}};
+  color: {{TEXT_MUTED}};
+}
+QPushButton[role="danger"] {
+  border-color: {{ERROR}};
+  color: {{ERROR}};
+}
+QPushButton[role="danger"]:hover {
+  background: {{ERROR}};
+  color: #ffffff;
+}
+
+/* ===== 分组与面板 ===== */
+QGroupBox {
+  border: 1px solid {{BORDER}};
+  border-radius: 8px;
+  margin-top: 14px;
+  padding-top: 10px;
+  background: {{BASE}};
+}
+QGroupBox::title {
+  subcontrol-origin: margin;
+  left: 10px;
+  padding: 0 6px;
+  color: {{TEXT_MUTED}};
+}
+QFrame[role="panel"], QFrame[role="banner"] {
+  border-radius: 8px;
+  padding: 8px;
+}
+QFrame[role="panel"] {
+  background: {{SURFACE}};
+  border: 1px solid {{BORDER}};
+}
+QFrame[role="banner"] {
+  background: {{HINT_BG}};
+  border: 1px solid {{WARNING}};
+}
+
+/* ===== 文字角色 ===== */
+QLabel[role="muted"] { color: {{TEXT_MUTED}}; font-size: 12px; }
+QLabel[role="success"] { color: {{SUCCESS}}; }
+QLabel[role="warning"] { color: {{WARNING}}; }
+QLabel[role="error"] { color: {{ERROR}}; }
+QLabel[role="title"] { font-size: 16px; font-weight: 600; }
+
+/* ===== 拖拽区 ===== */
+DropZone {
+  border: 2px dashed {{BORDER}};
+  border-radius: 10px;
+  background: {{SURFACE}};
+}
+DropZone[dragActive="true"] {
+  border-color: {{PRIMARY}};
+  background: {{SELECTION}};
+}
+
+/* ===== 进度与阶段 ===== */
+QProgressBar {
+  border: 1px solid {{BORDER}};
+  border-radius: 6px;
+  text-align: center;
+  background: {{SURFACE}};
+  min-height: 14px;
+}
+QProgressBar::chunk {
+  background: {{PRIMARY}};
+  border-radius: 5px;
+}
+QLabel[stageState="pending"] {
+  color: {{TEXT_MUTED}};
+  padding: 3px 10px;
+}
+QLabel[stageState="active"] {
+  color: #ffffff;
+  background: {{PRIMARY}};
+  border-radius: 10px;
+  padding: 3px 10px;
+  font-weight: 600;
+}
+QLabel[stageState="done"] {
+  color: {{SUCCESS}};
+  padding: 3px 10px;
+}
+
+/* ===== 对话气泡 ===== */
+QFrame[role="bubbleUser"] {
+  background: {{SELECTION}};
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+QFrame[role="bubbleAssistant"] {
+  background: {{SURFACE}};
+  border: 1px solid {{BORDER}};
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+QPlainTextEdit[role="codeBlock"] {
+  background: {{SURFACE}};
+  border: 1px solid {{BORDER}};
+  border-radius: 6px;
+  font-family: "Cascadia Mono", "Consolas", monospace;
+  font-size: 13px;
+}
+
+/* ===== 日志与等宽 ===== */
+QPlainTextEdit[role="mono"], QListWidget[role="mono"] {
+  font-family: "Cascadia Mono", "Consolas", monospace;
+  font-size: 13px;
+}
+
+/* ===== 滚动条 ===== */
+QScrollBar:vertical {
+  background: transparent;
+  width: 10px;
+  margin: 2px;
+}
+QScrollBar::handle:vertical {
+  background: {{BORDER}};
+  border-radius: 5px;
+  min-height: 30px;
+}
+QScrollBar::handle:vertical:hover {
+  background: {{TEXT_MUTED}};
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+  height: 0;
+}
+QScrollBar:horizontal {
+  background: transparent;
+  height: 10px;
+  margin: 2px;
+}
+QScrollBar::handle:horizontal {
+  background: {{BORDER}};
+  border-radius: 5px;
+  min-width: 30px;
+}
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+  width: 0;
+}
+
+/* ===== 状态栏 ===== */
+QStatusBar {
+  background: {{SURFACE}};
+  border-top: 1px solid {{BORDER}};
+}
+
+/* ===== 提示 ===== */
+QToolTip {
+  background: {{SURFACE}};
+  color: {{TEXT}};
+  border: 1px solid {{BORDER}};
+  border-radius: 6px;
+  padding: 6px 8px;
+}

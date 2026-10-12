@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 阅读文档
+    url: https://github.com/yummytrush/anki-mint-vocabulary#readme
+    about: 输入格式、配置说明与常见问题（FAQ）都在 README 中
